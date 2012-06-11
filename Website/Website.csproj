@@ -675,10 +675,6 @@
     <Compile Include="ViewModels\UserProfileModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\NuGetGallery.mdf" />
-    <Content Include="App_Data\NuGetGallery_log.ldf">
-      <DependentUpon>NuGetGallery.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\Images\changePassword.png" />
     <Content Include="Content\Images\copy.png" />
     <Content Include="Content\Images\errorPage.png" />
@@ -845,6 +841,7 @@
     <Content Include="DynamicData\Site.master" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="DynamicData\CustomPages\" />
   </ItemGroup>
   <PropertyGroup>
