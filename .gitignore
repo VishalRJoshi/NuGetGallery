@@ -10,3 +10,5 @@ _AzurePackage
 NuGetGallery.sln.docstates
 _ReSharper.NuGetGallery
 _PackagedWebsite
+*.mdf
+*.ldf
