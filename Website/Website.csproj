@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -21,6 +22,15 @@
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
     <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
     <RunCodeAnalysis Condition=" '$(CodeAnalysis)' == 'true' ">true</RunCodeAnalysis>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -665,6 +675,10 @@
     <Compile Include="ViewModels\UserProfileModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\NuGetGallery.mdf" />
+    <Content Include="App_Data\NuGetGallery_log.ldf">
+      <DependentUpon>NuGetGallery.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\Images\changePassword.png" />
     <Content Include="Content\Images\copy.png" />
     <Content Include="Content\Images\errorPage.png" />
@@ -810,13 +824,6 @@
     <Compile Include="Infrastructure\Lucene\LuceneSearchService.cs" />
     <Content Include="Views\CuratedFeeds\CuratedFeed.cshtml" />
     <Content Include="Views\CuratedPackages\CreateCuratedPackageForm.cshtml" />
-    <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
-    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
-    <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
-    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.dll" />
-    <None Include="_bin_deployableAssemblies\System.Web.Razor.dll" />
-    <None Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
-    <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -840,8 +847,13 @@
   <ItemGroup>
     <Folder Include="DynamicData\CustomPages\" />
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
