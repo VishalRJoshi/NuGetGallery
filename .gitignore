@@ -2,7 +2,6 @@ bin
 obj
 *.user
 *.suo
-App_Data
 *.results.xml
 /packages
 _AzurePackage
@@ -10,5 +9,3 @@ _AzurePackage
 NuGetGallery.sln.docstates
 _ReSharper.NuGetGallery
 _PackagedWebsite
-*.mdf
-*.ldf
